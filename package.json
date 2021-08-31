@@ -1,0 +1,35 @@
+{
+	"name": "m6d7",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon -r dotenv/config -e js ./src/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hashamzafar/m6d7.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hashamzafar/m6d7/issues"
+	},
+	"homepage": "https://github.com/hashamzafar/m6d7#readme",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"express-list-endpoints": "^6.0.0",
+		"fs-extra": "^10.0.0",
+		"http-error": "0.0.6",
+		"mongoose": "^6.0.3",
+		"validator": "^13.6.0"
+	},
+	"devDependencies": {
+		"dotenv": "^10.0.0",
+		"nodemon": "^2.0.12"
+	}
+}
