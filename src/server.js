@@ -1,7 +1,7 @@
 import express from 'express';
 import listEndpoints from "express-list-endpoints"
 import mongoose from 'mongoose'
-
+// import commentsRouter from "./services/comments/index.js"
 import blogsRouter from "./services/blogs/index.js"
 import { badRequestErrorHandler, catchAllErrorHandler, notFoundErrorHandler } from './errorHandlers.js'
 
@@ -10,7 +10,7 @@ const server = express()
 const port = process.env.PORT || 3001
 server.use(express.json())
 server.use("/blogs", blogsRouter)
-
+// server.use('/', commentsRouter)
 server.use(badRequestErrorHandler)
 server.use(notFoundErrorHandler)
 server.use(catchAllErrorHandler)
