@@ -94,7 +94,7 @@ blogsRouter
             const newComment = new CommentsModel(req.body)
             const savedComment = await newComment.save()
             const updatedBlog = await BlogsModel.findByIdAndUpdate(
-                req.params.id,
+                req.params._id,
                 { $push: { comments: savedComment } },
                 { new: true }
             )
