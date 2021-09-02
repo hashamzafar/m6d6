@@ -38,7 +38,7 @@ blogsRouter
 
             const blogId = req.params._id
 
-            const blog = await BlogsModel.findById(blogId)
+            const blog = await BlogsModel.findById(blogId).populate("author")
 
             if (blog) {
                 res.send(blog)
@@ -96,7 +96,8 @@ blogsRouter
             const updatedBlog = await BlogsModel.findByIdAndUpdate(
                 req.params._id,
                 { $push: { comments: savedComment } },
-                { new: true }
+                { new: true, runValidators: true }
+
             )
             if (updatedBlog) {
                 res.send(updatedBlog)
@@ -151,7 +152,8 @@ blogsRouter
             const commentId = req.params._id
 
             const modifiedComment = await CommentsModel.findByIdAndUpdate(commentId, req.body, {
-                new: true
+                new: true,
+                runValidators: true,
             })
 
             if (modifiedBlog) {

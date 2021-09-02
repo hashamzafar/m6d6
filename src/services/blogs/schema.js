@@ -23,11 +23,11 @@ const blogSchema = new Schema({
             type: String, required: true
         }
     },
-    author: {
-        name: { type: String, require: true },
-        avatar: { type: String, require: true }
-    },
-
+    // author: {
+    //     name: { type: String, require: true },
+    //     avatar: { type: String, require: true }
+    // },
+    author: { type: Schema.Types.ObjectId, ref: "Author" },
     content: { type: String, require: true },
     comments: [CommentSchema]
     // comments: { type: String, require: true}
