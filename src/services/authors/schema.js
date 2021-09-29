@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 const { Schema, model } = mongoose
 
-const authorSchema = new Schema(
+const AuthorSchema = new Schema(
     {
         name: { type: String, required: true },
         surname: { type: String, required: true },
@@ -11,16 +11,16 @@ const authorSchema = new Schema(
     },
     { timestamps: true }
 )
-authorSchema.pre("save", async function (next) {
+AuthorSchema.pre("save", async function (next) {
     const newAuthor = this
-    const plainPw = newUser.password
+    const plainPw = newAuthor.password
     if (newAuthor.isModified("password")) {
         newAuthor.password = await bcrypt.hash(plainPw, 10)
     }
     next()
 })
 
-authorSchema.methods.toJson = function () {
+AuthorSchema.methods.toJson = function () {
     const authorDocument = this
     const authorObject = authorDocument.toObject()
 
@@ -30,7 +30,7 @@ authorSchema.methods.toJson = function () {
 
 }
 
-authorSchema.statics.checkCredentials = async function (email, plainPw) {
+AuthorSchema.statics.checkCredentials = async function (email, plainPw) {
     const author = this.findOne({ email })
 
     if (author) {
@@ -45,4 +45,4 @@ authorSchema.statics.checkCredentials = async function (email, plainPw) {
 
 
 
-export default model("Author", authorSchema)
+export default model("Author", AuthorSchema)
