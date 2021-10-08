@@ -3,7 +3,7 @@ import listEndpoints from "express-list-endpoints"
 import mongoose from 'mongoose'
 // import commentsRouter from "./services/comments/index.js"
 import blogsRouter from "./services/blogs/index.js"
-import { badRequestErrorHandler, catchAllErrorHandler, notFoundErrorHandler } from './errorHandlers.js'
+import { badRequestErrorHandler, catchAllErrorHandler, notFoundErrorHandler, unathorizedHandler, forbiddenHandler } from './errorHandlers.js'
 import authorsRouter from "./services/authors/index.js"
 const server = express()
 
@@ -12,6 +12,8 @@ server.use(express.json())
 server.use("/blogs", blogsRouter)
 server.use("/authors", authorsRouter)
 // server.use('/', commentsRouter)
+server.use(unathorizedHandler)
+server.use(forbiddenHandler)
 server.use(badRequestErrorHandler)
 server.use(notFoundErrorHandler)
 server.use(catchAllErrorHandler)
