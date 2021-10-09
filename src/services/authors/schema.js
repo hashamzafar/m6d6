@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-
+import bcrypt from "bcrypt"
 const { Schema, model } = mongoose
 
 const AuthorSchema = new Schema(
