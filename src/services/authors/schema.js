@@ -31,7 +31,7 @@ AuthorSchema.methods.toJson = function () {
 }
 
 AuthorSchema.statics.checkCredentials = async function (email, plainPw) {
-    const author = this.findOne({ email })
+    const author = await this.findOne({ email })
 
     if (author) {
         const isMatch = await bcrypt.compare(plainPw, author.password)
