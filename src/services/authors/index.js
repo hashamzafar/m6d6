@@ -1,11 +1,11 @@
 import express from "express"
 import q2m from "query-to-mongo"
-
+import { basicAuthMiddleware } from "./Middleware.js"
 import AuthorModel from "./schema.js"
 
 const authorsRouter = express.Router()
 
-authorsRouter.get("/", async (req, res, next) => {
+authorsRouter.get("/", basicAuthMiddleware, async (req, res, next) => {
     try {
         const query = q2m(req.query)
 
