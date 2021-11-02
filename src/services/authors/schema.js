@@ -8,6 +8,7 @@ const AuthorSchema = new Schema(
         surname: { type: String, required: true },
         password: { type: String, required: true },
         email: { type: String, required: true },
+        role: { type: String, default: "User", enum: ["User", "Admin"] }
     },
     { timestamps: true }
 )
@@ -19,13 +20,12 @@ AuthorSchema.pre("save", async function (next) {
     }
     next()
 })
-
 AuthorSchema.methods.toJson = function () {
     const authorDocument = this
     const authorObject = authorDocument.toObject()
 
     delete authorObject.password
-
+    delete authorObject.__v
     return authorObject
 
 }
@@ -42,6 +42,7 @@ AuthorSchema.statics.checkCredentials = async function (email, plainPw) {
     }
 
 }
+
 
 
 

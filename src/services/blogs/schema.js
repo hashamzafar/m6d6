@@ -15,6 +15,9 @@ const blogSchema = new Schema({
     category: { type: String, required: true },
     title: { type: String, required: true },
     cover: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    role: { type: String, default: "User", enum: ["User", "Admin"] },
     readTime: {
         value: {
             type: Number, required: true
