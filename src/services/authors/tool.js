@@ -1,21 +1,26 @@
-import jwt from "express-jwt"
+import jwt from "jsonwebtoken"
 
 
-const generateJWT = payload =>
+export const JWTAuthenticate = async user => {
+    const accessToken = await generateJWT({ _id: user.id_id })
+    return accessToken
+}
+
+export const generateJWT = payload =>
     new Promise((resolve, reject) =>
-        jwt.sign(payload, process.env.JWT_SECRET, { exprireIn: "1 week" }, (err, token) => {
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1 week" }, (err, token) => {
             if (err) reject(err)
-            resolve(token)
+            else resolve(token)
         }))
 
 
-// generateJwt(1221321).then(token => console.log(tekon)).catch(err => console.log(err))
-
-// const token = await generateJWT(12312312)
+generateJWT(1221321).then(token => console.log(token)).catch(err => console.log(err))
 
 
 
-const verifyJWT = token => new promise((resolve, reject) => {
+
+
+export const verifyJWT = token => new promise((resolve, reject) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
         if (err) reject(err)
         resolve(decodedToken)

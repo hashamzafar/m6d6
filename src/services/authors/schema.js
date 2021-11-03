@@ -26,6 +26,7 @@ AuthorSchema.methods.toJson = function () {
 
     delete authorObject.password
     delete authorObject.__v
+
     return authorObject
 
 }
