@@ -1,13 +1,14 @@
 import passport from "passport"
-import GoogleStrategy from "passport-google-oauth2"
+import GoogleStrategy from "passport-google-oauth20"
 import AuthorModel from "./schema.js"
 import { JWTAuthenticate } from "./tools.js"
+
 
 const googleStrategy = new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_OAUTH_ID,
         clientSecret: process.env.GOOGLE_OAUTH_SECRET,
-        callbackURL: `${process.env.API_URL}/users/googleRedirect`,
+        callbackURL: `${process.env.API_URL}/authors/googleRedirect`,
     },
     async (accessToken, refreshToken, googleProfile, passportNext) => {
         try {

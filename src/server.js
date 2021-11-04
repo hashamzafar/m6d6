@@ -11,11 +11,15 @@ import GoogleStrategy from "./services/authors/oauth.js"
 const server = express()
 
 const port = process.env.PORT || 3001
-server.use(express.json())
 
 passport.use("google", GoogleStrategy)
 
 server.use(cors())
+server.use(express.json())
+
+server.use(passport.initialize())
+
+
 
 server.use("/blogs", blogsRouter)
 server.use("/authors", authorsRouter)
