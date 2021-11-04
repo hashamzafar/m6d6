@@ -8,7 +8,9 @@ const AuthorSchema = new Schema(
         surname: { type: String, required: true },
         password: { type: String, required: true },
         email: { type: String, required: true },
-        role: { type: String, default: "User", enum: ["User", "Admin"] }
+        role: { type: String, default: "User", enum: ["User", "Admin"] },
+        refreshToken: { type: String },
+        googleId: { type: String }
     },
     { timestamps: true }
 )
@@ -26,6 +28,7 @@ AuthorSchema.methods.toJson = function () {
 
     delete authorObject.password
     delete authorObject.__v
+    delete userObject.refreshToken
 
     return authorObject
 

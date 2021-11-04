@@ -2,7 +2,7 @@ import createHttpError from "http-error"
 import { verifyJWT } from "./tool.js"
 import AuthorModel from "./schema.js"
 
-export const JWTAuthMiddleware = (req, res, next) => {
+export const JWTAuthMiddleware = async (req, res, next) => {
 
     if (!req.headers.Authorization) {
         next(createHttpError(401, " please provide credentials in Authorization header!"))
@@ -15,7 +15,7 @@ export const JWTAuthMiddleware = (req, res, next) => {
             console.log(decordedToken)
             next()
 
-            const author = await AuthorModel.findById(decordedToken.id)
+            const author = await AuthorModel.findById(decordedToken._id)
             if (author) {
                 req.author = author
                 next()
